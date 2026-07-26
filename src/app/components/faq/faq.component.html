@@ -1,0 +1,19 @@
+<section class="faq section" id="faq">
+  <div class="section-inner faq__inner">
+    <div class="section-heading">
+      <h2>Frequently Asked Questions</h2>
+    </div>
+
+    <div class="faq__list">
+      <div class="faq__item" *ngFor="let item of faqs; let i = index">
+        <button class="faq__question" (click)="toggle(i)" [attr.aria-expanded]="openIndex() === i">
+          <span>{{ item.question }}</span>
+          <span class="material-symbols-outlined" [class.faq__icon--open]="openIndex() === i">expand_more</span>
+        </button>
+        <div class="faq__answer" *ngIf="openIndex() === i">
+          <p>{{ item.answer }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+<section class="contact section" id="contact">
+  <div class="section-inner contact__grid">
+    <div class="contact__info">
+      <h2>Get in touch.</h2>
+      <p class="contact__lead">
+        Reach out to our support team for any questions about your account.
+      </p>
+
+      <div class="contact__items">
+        <div class="contact__item">
+          <div class="contact__icon">
+            <span class="material-symbols-outlined">location_on</span>
+          </div>
+          <div>
+            <p class="contact__label">Address</p>
+            <p class="contact__value">College Campus, Bank Database Management System Dept.</p>
+          </div>
+        </div>
+
+        <div class="contact__item">
+          <div class="contact__icon">
+            <span class="material-symbols-outlined">call</span>
+          </div>
+          <div>
+            <p class="contact__label">Phone Number</p>
+            <p class="contact__value">+1 (800) 123-4567</p>
+          </div>
+        </div>
+
+        <div class="contact__item">
+          <div class="contact__icon">
+            <span class="material-symbols-outlined">mail</span>
+          </div>
+          <div>
+            <p class="contact__label">Email</p>
+            <p class="contact__value">support&#64;trustbank.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact__form-wrap">
+      <form class="contact__form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
+        <div class="contact__field">
+          <label for="name">Full Name</label>
+          <input id="name" name="name" type="text" placeholder="John Doe" [(ngModel)]="name" required />
+        </div>
+        <div class="contact__field">
+          <label for="email">Email Address</label>
+          <input id="email" name="email" type="email" placeholder="john@example.com" [(ngModel)]="email" required />
+        </div>
+        <div class="contact__field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="4" placeholder="How can we help you today?" [(ngModel)]="message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary contact__submit">Send Message</button>
+        <p class="contact__success" *ngIf="submitted">Thanks — your message has been sent.</p>
+      </form>
+    </div>
+  </div>
+</section>

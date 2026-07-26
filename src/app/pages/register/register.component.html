@@ -1,0 +1,220 @@
+<div class="register-page">
+  <div class="register-page__header">
+    <a routerLink="/" class="register-page__brand">
+      <span class="register-page__logo">
+        <span class="material-symbols-outlined">account_balance</span>
+      </span>
+      <span>TrustBank</span>
+    </a>
+  </div>
+
+  <div class="register-card">
+    <h1 class="register-card__heading">Create Your Account</h1>
+    <p class="register-card__subtitle">
+      Register for a new TrustBank customer account.
+    </p>
+
+    <form class="register-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Personal Information -->
+      <fieldset class="form-section">
+        <legend class="form-section__legend">
+          <span class="material-symbols-outlined">badge</span>
+          Personal Information
+        </legend>
+
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="fullName">Full Name</label>
+            <input id="fullName" type="text" formControlName="fullName" placeholder="John Doe"
+              [class.form-field__input--invalid]="field('fullName').invalid && field('fullName').touched" />
+            <p class="form-field__error" *ngIf="field('fullName').invalid && field('fullName').touched">
+              Full name is required.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="dob">Date of Birth</label>
+            <input id="dob" type="date" formControlName="dob"
+              [class.form-field__input--invalid]="field('dob').invalid && field('dob').touched" />
+            <p class="form-field__error" *ngIf="field('dob').invalid && field('dob').touched">
+              Date of birth is required.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="gender">Gender</label>
+            <select id="gender" formControlName="gender"
+              [class.form-field__input--invalid]="field('gender').invalid && field('gender').touched">
+              <option value="" disabled selected>Select gender</option>
+              <option *ngFor="let g of genders" [value]="g">{{ g }}</option>
+            </select>
+            <p class="form-field__error" *ngIf="field('gender').invalid && field('gender').touched">
+              Please select a gender.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="mobile">Mobile Number</label>
+            <input id="mobile" type="tel" formControlName="mobile" placeholder="9876543210" maxlength="10"
+              [class.form-field__input--invalid]="field('mobile').invalid && field('mobile').touched" />
+            <p class="form-field__error" *ngIf="field('mobile').invalid && field('mobile').touched">
+              <ng-container *ngIf="field('mobile').errors?.['required']">Mobile number is required.</ng-container>
+              <ng-container *ngIf="field('mobile').errors?.['invalidMobile']">Enter a valid 10-digit mobile number.</ng-container>
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="email">Email</label>
+            <input id="email" type="email" formControlName="email" placeholder="john@example.com"
+              [class.form-field__input--invalid]="field('email').invalid && field('email').touched" />
+            <p class="form-field__error" *ngIf="field('email').invalid && field('email').touched">
+              <ng-container *ngIf="field('email').errors?.['required']">Email is required.</ng-container>
+              <ng-container *ngIf="field('email').errors?.['email']">Enter a valid email address.</ng-container>
+            </p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Identity -->
+      <fieldset class="form-section">
+        <legend class="form-section__legend">
+          <span class="material-symbols-outlined">fingerprint</span>
+          Identity
+        </legend>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="aadhaar">Aadhaar Number</label>
+            <input id="aadhaar" type="text" formControlName="aadhaar" placeholder="123456789012" maxlength="12"
+              [class.form-field__input--invalid]="field('aadhaar').invalid && field('aadhaar').touched" />
+            <p class="form-field__error" *ngIf="field('aadhaar').invalid && field('aadhaar').touched">
+              <ng-container *ngIf="field('aadhaar').errors?.['required']">Aadhaar number is required.</ng-container>
+              <ng-container *ngIf="field('aadhaar').errors?.['invalidAadhaar']">Enter a valid 12-digit Aadhaar number.</ng-container>
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="pan">PAN Number</label>
+            <input id="pan" type="text" formControlName="pan" placeholder="ABCDE1234F" maxlength="10" class="uppercase-input"
+              [class.form-field__input--invalid]="field('pan').invalid && field('pan').touched" />
+            <p class="form-field__error" *ngIf="field('pan').invalid && field('pan').touched">
+              <ng-container *ngIf="field('pan').errors?.['required']">PAN number is required.</ng-container>
+              <ng-container *ngIf="field('pan').errors?.['invalidPan']">Enter a valid PAN (e.g. ABCDE1234F).</ng-container>
+            </p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Address -->
+      <fieldset class="form-section">
+        <legend class="form-section__legend">
+          <span class="material-symbols-outlined">home_pin</span>
+          Address
+        </legend>
+
+        <div class="form-grid">
+          <div class="form-field form-field--full">
+            <label for="address">Address</label>
+            <input id="address" type="text" formControlName="address" placeholder="House no., street, area"
+              [class.form-field__input--invalid]="field('address').invalid && field('address').touched" />
+            <p class="form-field__error" *ngIf="field('address').invalid && field('address').touched">
+              Address is required.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="city">City</label>
+            <input id="city" type="text" formControlName="city" placeholder="City"
+              [class.form-field__input--invalid]="field('city').invalid && field('city').touched" />
+            <p class="form-field__error" *ngIf="field('city').invalid && field('city').touched">
+              City is required.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="state">State</label>
+            <input id="state" type="text" formControlName="state" placeholder="State"
+              [class.form-field__input--invalid]="field('state').invalid && field('state').touched" />
+            <p class="form-field__error" *ngIf="field('state').invalid && field('state').touched">
+              State is required.
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="pincode">PIN Code</label>
+            <input id="pincode" type="text" formControlName="pincode" placeholder="560001" maxlength="6"
+              [class.form-field__input--invalid]="field('pincode').invalid && field('pincode').touched" />
+            <p class="form-field__error" *ngIf="field('pincode').invalid && field('pincode').touched">
+              <ng-container *ngIf="field('pincode').errors?.['required']">PIN code is required.</ng-container>
+              <ng-container *ngIf="field('pincode').errors?.['invalidPincode']">Enter a valid 6-digit PIN code.</ng-container>
+            </p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Account Information -->
+      <fieldset class="form-section">
+        <legend class="form-section__legend">
+          <span class="material-symbols-outlined">account_balance</span>
+          Account Information
+        </legend>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="accountType">Account Type</label>
+            <select id="accountType" formControlName="accountType"
+              [class.form-field__input--invalid]="field('accountType').invalid && field('accountType').touched">
+              <option value="" disabled selected>Select account type</option>
+              <option *ngFor="let type of accountTypes" [value]="type">{{ type }}</option>
+            </select>
+            <p class="form-field__error" *ngIf="field('accountType').invalid && field('accountType').touched">
+              Please select an account type.
+            </p>
+          </div>
+        </div>
+      </fieldset>
+
+      <!-- Login Credentials -->
+      <fieldset class="form-section">
+        <legend class="form-section__legend">
+          <span class="material-symbols-outlined">lock</span>
+          Login Credentials
+        </legend>
+
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="password">Create Password</label>
+            <input id="password" type="password" formControlName="password" placeholder="At least 8 characters"
+              [class.form-field__input--invalid]="field('password').invalid && field('password').touched" />
+            <p class="form-field__error" *ngIf="field('password').invalid && field('password').touched">
+              <ng-container *ngIf="field('password').errors?.['required']">Password is required.</ng-container>
+              <ng-container *ngIf="field('password').errors?.['minlength']">Password must be at least 8 characters.</ng-container>
+            </p>
+          </div>
+
+          <div class="form-field">
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" type="password" formControlName="confirmPassword" placeholder="Re-enter password"
+              [class.form-field__input--invalid]="field('confirmPassword').invalid && field('confirmPassword').touched" />
+            <p class="form-field__error" *ngIf="field('confirmPassword').invalid && field('confirmPassword').touched">
+              <ng-container *ngIf="field('confirmPassword').errors?.['required']">Please confirm your password.</ng-container>
+              <ng-container *ngIf="field('confirmPassword').errors?.['passwordMismatch']">Passwords do not match.</ng-container>
+            </p>
+          </div>
+        </div>
+      </fieldset>
+
+      <div class="register-form__actions">
+        <button type="submit" class="btn btn-primary register-form__submit" [disabled]="registerForm.invalid">
+          Register
+        </button>
+        <a routerLink="/" class="btn btn-outline register-form__back">Back to Home</a>
+      </div>
+    </form>
+
+    <p class="register-card__footer">
+      Already have an account? <a routerLink="/login">Login</a>
+    </p>
+  </div>
+</div>

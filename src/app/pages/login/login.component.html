@@ -1,0 +1,90 @@
+<div class="auth-page">
+  <div class="auth-panel">
+    <div class="auth-panel__content">
+      <a routerLink="/" class="auth-panel__brand">
+        <span class="auth-panel__logo">
+          <span class="material-symbols-outlined">account_balance</span>
+        </span>
+        <span>TrustBank</span>
+      </a>
+
+      <div class="auth-panel__illustration">
+        <div class="auth-panel__icon-ring">
+          <span class="material-symbols-outlined">account_balance</span>
+        </div>
+        <div class="auth-panel__icon-badge auth-panel__icon-badge--top">
+          <span class="material-symbols-outlined">lock</span>
+        </div>
+        <div class="auth-panel__icon-badge auth-panel__icon-badge--bottom">
+          <span class="material-symbols-outlined">verified_user</span>
+        </div>
+      </div>
+
+      <h2 class="auth-panel__title">Bank with confidence.</h2>
+      <p class="auth-panel__text">
+        Access your accounts, transfers, transaction history and loan
+        services — all secured behind your TrustBank login.
+      </p>
+    </div>
+  </div>
+
+  <div class="auth-form-side">
+    <div class="auth-card">
+      <h1 class="auth-card__heading">Welcome Back</h1>
+      <p class="auth-card__subtitle">
+        Login securely to access your banking dashboard.
+      </p>
+
+      <form class="auth-card__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="form-field">
+          <label for="customerId">Customer ID</label>
+          <div class="form-field__control">
+            <span class="material-symbols-outlined form-field__icon">badge</span>
+            <input
+              id="customerId"
+              type="text"
+              formControlName="customerId"
+              placeholder="Enter your Customer ID"
+              [class.form-field__input--invalid]="customerId.invalid && customerId.touched"
+            />
+          </div>
+          <p class="form-field__error" *ngIf="customerId.invalid && customerId.touched">
+            Customer ID is required.
+          </p>
+        </div>
+
+        <div class="form-field">
+          <label for="password">Password</label>
+          <div class="form-field__control">
+            <span class="material-symbols-outlined form-field__icon">lock</span>
+            <input
+              id="password"
+              type="password"
+              formControlName="password"
+              placeholder="Enter your password"
+              [class.form-field__input--invalid]="password.invalid && password.touched"
+            />
+          </div>
+          <p class="form-field__error" *ngIf="password.invalid && password.touched">
+            Password is required.
+          </p>
+        </div>
+
+        <div class="auth-card__actions">
+          <button
+            type="submit"
+            class="btn btn-primary auth-card__submit"
+            [disabled]="loginForm.invalid"
+          >
+            Login
+          </button>
+          <a routerLink="/" class="btn btn-outline auth-card__back">Back to Home</a>
+        </div>
+      </form>
+
+      <p class="auth-card__footer">
+        Don't have an account? <a routerLink="/register">Register</a>
+      </p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<section class="about section" id="about">
+  <div class="section-inner">
+    <div class="section-heading">
+      <h2>About Velora Bank</h2>
+      <p>
+        Built on foundations of trust and transparency, Velora Bank provides a
+        simple, secure way to manage your everyday banking.
+      </p>
+    </div>
+
+    <div class="about__grid">
+      <div class="about__card" *ngFor="let feature of features">
+        <div class="about__icon">
+          <span class="material-symbols-outlined">{{ feature.icon }}</span>
+        </div>
+        <h4>{{ feature.title }}</h4>
+        <p>{{ feature.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,51 @@
+.services__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @media (min-width: 1024px) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+// Informational cards only — no hover-to-navigate treatment,
+// no pointer cursor, no directional affordances.
+.services__card {
+  padding: 32px;
+  background: #fff;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: default;
+}
+
+.services__icon {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--radius-md);
+  background: rgba(212, 163, 115, 0.15);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+  .material-symbols-outlined {
+    font-size: 28px;
+  }
+}
+
+.services__card h5 {
+  font-size: 19px;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.services__card p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+  font-size: 15px;
+}

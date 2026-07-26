@@ -1,0 +1,18 @@
+<section class="services section" id="services">
+  <div class="section-inner">
+    <div class="section-heading">
+      <h2>Our Services</h2>
+      <p>A quick look at the banking services available within Velora Bank.</p>
+    </div>
+
+    <div class="services__grid">
+      <div class="services__card" *ngFor="let service of services">
+        <div class="services__icon">
+          <span class="material-symbols-outlined">{{ service.icon }}</span>
+        </div>
+        <h5>{{ service.title }}</h5>
+        <p>{{ service.description }}</p>
+      </div>
+    </div>
+  </div>
+</section>
