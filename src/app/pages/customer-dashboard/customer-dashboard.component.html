@@ -1,0 +1,22 @@
+<div class="dashboard-placeholder">
+  <div class="dashboard-placeholder__card">
+    <h1>Welcome, {{ customerName() }}</h1>
+    <p>You have successfully logged in.</p>
+    <p>Account Number: {{ accountNumber() }}</p>
+    <p>Account Type: {{ accountType() }}</p>
+    <p>Current Balance: {{ balance() !== null ? ('₹' + balance()) : '' }}</p>
+    <br>
+    <h3>Quick Actions</h3>
+    <a routerLink="/profile">
+      Profile
+    </a>
+    <br>
+    <a routerLink="/transaction-history">
+      View Transaction History
+    </a>
+    <br>
+    <a routerLink="/transfer-money">
+      Money Transfers
+    </a>
+  </div>
+</div>

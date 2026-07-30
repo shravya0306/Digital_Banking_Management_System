@@ -70,13 +70,17 @@
           </p>
         </div>
 
+        <p class="form-field__error auth-card__server-error" *ngIf="errorMessage()">
+          {{ errorMessage() }}
+        </p>
+
         <div class="auth-card__actions">
           <button
             type="submit"
             class="btn btn-primary auth-card__submit"
-            [disabled]="loginForm.invalid"
+            [disabled]="loginForm.invalid || isSubmitting()"
           >
-            Login
+            {{ isSubmitting() ? 'Logging in…' : 'Login' }}
           </button>
           <a routerLink="/" class="btn btn-outline auth-card__back">Back to Home</a>
         </div>

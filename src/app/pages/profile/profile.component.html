@@ -1,0 +1,84 @@
+<div class="profile-page">
+  <div class="profile-page__header">
+    <a routerLink="/" class="profile-page__brand">
+      <span class="profile-page__logo">
+        <span class="material-symbols-outlined">account_balance</span>
+      </span>
+      <span>TrustBank</span>
+    </a>
+  </div>
+
+  <div class="profile-card" *ngIf="profile() as p">
+    <h1 class="profile-card__heading">My Profile</h1>
+    <p class="profile-card__subtitle">Your account and personal details.</p>
+
+    <div class="profile-section">
+      <h2 class="profile-section__title">
+        <span class="material-symbols-outlined">badge</span>
+        Personal Information
+      </h2>
+      <div class="profile-grid">
+        <div class="profile-field">
+          <span class="profile-field__label">Customer Name</span>
+          <span class="profile-field__value">{{ p.full_name }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">Customer ID</span>
+          <span class="profile-field__value">{{ p.customer_id }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">Email</span>
+          <span class="profile-field__value">{{ p.email }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">Mobile</span>
+          <span class="profile-field__value">{{ p.mobile }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">Aadhaar</span>
+          <span class="profile-field__value">{{ p.aadhaar }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">PAN</span>
+          <span class="profile-field__value">{{ p.pan }}</span>
+        </div>
+        <div class="profile-field profile-field--full">
+          <span class="profile-field__label">Address</span>
+          <span class="profile-field__value">{{ p.address }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="profile-section">
+      <h2 class="profile-section__title">
+        <span class="material-symbols-outlined">account_balance</span>
+        Account Information
+      </h2>
+      <div class="profile-grid">
+        <div class="profile-field">
+          <span class="profile-field__label">Account Type</span>
+          <span class="profile-field__value">{{ p.account_type }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">Account Number</span>
+          <span class="profile-field__value">{{ p.account_number }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">IFSC Code</span>
+          <span class="profile-field__value">{{ p.ifsc_code }}</span>
+        </div>
+        <div class="profile-field">
+          <span class="profile-field__label">Branch</span>
+          <span class="profile-field__value">{{ p.branch }}</span>
+        </div>
+      </div>
+    </div>
+
+    <a routerLink="/customer-dashboard" class="btn btn-outline profile-card__back">Back to Dashboard</a>
+  </div>
+
+  <div class="profile-card" *ngIf="!profile() && errorMessage()">
+    <p class="profile-card__error">{{ errorMessage() }}</p>
+    <a routerLink="/login" class="btn btn-primary">Go to Login</a>
+  </div>
+</div>

@@ -1,0 +1,49 @@
+<div class="history-page">
+  <div class="history-page__header">
+    <a routerLink="/" class="history-page__brand">
+      <span class="history-page__logo">
+        <span class="material-symbols-outlined">account_balance</span>
+      </span>
+      <span>TrustBank</span>
+    </a>
+  </div>
+
+  <div class="history-card">
+    <h1 class="history-card__heading">Transaction History</h1>
+    <p class="history-card__subtitle">All transfers to and from your account, newest first.</p>
+
+    <p class="history-card__error" *ngIf="errorMessage()">{{ errorMessage() }}</p>
+
+    <div class="history-table" *ngIf="!errorMessage() && transactions().length > 0">
+      <div class="history-table__row history-table__row--head">
+        <span>Date</span>
+        <span>Type</span>
+        <span>Sender</span>
+        <span>Receiver</span>
+        <span>Amount</span>
+        <span>Remarks</span>
+        <span>Status</span>
+      </div>
+
+      <div class="history-table__row" *ngFor="let txn of transactions()">
+        <span data-label="Date">{{ txn.transaction_date }}</span>
+        <span data-label="Type">
+          <span class="history-badge" [class.history-badge--credit]="txn.direction === 'CREDIT'" [class.history-badge--debit]="txn.direction === 'DEBIT'">
+            {{ txn.direction === 'CREDIT' ? 'Credit' : 'Debit' }}
+          </span>
+        </span>
+        <span data-label="Sender">{{ txn.sender_account }}</span>
+        <span data-label="Receiver">{{ txn.receiver_account }}</span>
+        <span data-label="Amount">₹{{ txn.amount }}</span>
+        <span data-label="Remarks">{{ txn.remarks || '—' }}</span>
+        <span data-label="Status">{{ txn.status }}</span>
+      </div>
+    </div>
+
+    <p class="history-card__empty" *ngIf="!isLoading() && !errorMessage() && transactions().length === 0">
+      No transactions yet.
+    </p>
+
+    <a routerLink="/customer-dashboard" class="btn btn-outline history-card__back">Back to Dashboard</a>
+  </div>
+</div>

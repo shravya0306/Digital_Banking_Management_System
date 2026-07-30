@@ -1,0 +1,130 @@
+.transfer-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 32px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.transfer-page__header {
+  width: 100%;
+  max-width: 480px;
+  margin-bottom: 24px;
+}
+
+.transfer-page__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--color-primary);
+}
+
+.transfer-page__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transfer-card {
+  width: 100%;
+  max-width: 480px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 40px;
+
+  @media (max-width: 640px) {
+    padding: 28px 20px;
+  }
+}
+
+.transfer-card__heading {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.transfer-card__subtitle {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.transfer-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  label {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  input {
+    padding: 12px 16px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 15px;
+    outline: none;
+    background: #fff;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+    &:focus {
+      border-color: var(--color-primary);
+      box-shadow: 0 0 0 3px rgba(122, 46, 58, 0.12);
+    }
+  }
+}
+
+.form-field__input--invalid {
+  border-color: #b3413a !important;
+}
+
+.form-field__error {
+  font-size: 12px;
+  color: #b3413a;
+}
+
+.transfer-form__server-message {
+  text-align: center;
+  font-size: 13px;
+
+  &--success {
+    color: var(--color-primary);
+  }
+}
+
+.transfer-form__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.transfer-form__submit,
+.transfer-form__back {
+  width: 100%;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+}

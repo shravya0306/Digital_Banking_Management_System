@@ -9,6 +9,7 @@ import {
   pincodeValidator,
   passwordsMatchValidator,
 } from '../../shared/custom-validators';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -20,9 +21,12 @@ import {
 export class RegisterComponent {
   private readonly fb = inject(FormBuilder);
   private readonly router = inject(Router);
+  private readonly authService = inject(AuthService);
 
   readonly accountTypes = ['Savings', 'Current'];
   readonly genders = ['Male', 'Female', 'Other'];
+
+  private isSubmitting = false;
 
   registerForm = this.fb.group(
     {
@@ -64,8 +68,39 @@ export class RegisterComponent {
       this.registerForm.markAllAsTouched();
       return;
     }
-    // Not connected to a backend (Flask/SQLite) yet — UI only.
-    console.log('Register form submitted', this.registerForm.value);
-    this.router.navigate(['/login']);
+
+    if (this.isSubmitting) {
+      return;
+    }
+    this.isSubmitting = true;
+
+    const v = this.registerForm.value;
+    const fullAddress = `${v.address}, ${v.city}, ${v.state} - ${v.pincode}`;
+
+    this.authService
+      .register({
+        full_name: v.fullName!,
+        email: v.email!,
+        mobile: v.mobile!,
+        aadhaar: v.aadhaar!,
+        pan: v.pan!,
+        address: fullAddress,
+        account_type: v.accountType!,
+        password: v.password!,
+      })
+      .subscribe({
+        next: (response) => {
+          this.isSubmitting = false;
+          if (response.success) {
+            this.router.navigate(['/login']);
+          } else {
+            alert(response.message ?? 'Registration failed.');
+          }
+        },
+        error: (err) => {
+          this.isSubmitting = false;
+          alert(err?.error?.message ?? 'Registration failed. Please try again.');
+        },
+      });
   }
 }

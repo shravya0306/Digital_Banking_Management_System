@@ -1,0 +1,129 @@
+.profile-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+  padding: 32px 20px 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-page__header {
+  width: 100%;
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.profile-page__brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 20px;
+  color: var(--color-primary);
+}
+
+.profile-page__logo {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: var(--color-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 760px;
+  background: #fff;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  border: 1px solid var(--color-border);
+  padding: 40px;
+
+  @media (max-width: 640px) {
+    padding: 28px 20px;
+  }
+}
+
+.profile-card__heading {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.profile-card__subtitle {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-bottom: 32px;
+}
+
+.profile-card__error {
+  color: #b3413a;
+  margin-bottom: 20px;
+}
+
+.profile-card__back {
+  margin-top: 8px;
+}
+
+.profile-section {
+  margin-bottom: 32px;
+
+  &:last-of-type {
+    margin-bottom: 24px;
+  }
+}
+
+.profile-section__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--color-primary);
+  padding: 0 0 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--color-border);
+
+  .material-symbols-outlined {
+    font-size: 20px;
+    color: var(--color-accent);
+  }
+}
+
+.profile-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  @media (min-width: 640px) {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.profile-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  &--full {
+    @media (min-width: 640px) {
+      grid-column: 1 / -1;
+    }
+  }
+}
+
+.profile-field__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-text-muted);
+}
+
+.profile-field__value {
+  font-size: 15px;
+  color: var(--color-text);
+  font-weight: 500;
+}

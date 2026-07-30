@@ -1,0 +1,69 @@
+<div class="transfer-page">
+  <div class="transfer-page__header">
+    <a routerLink="/" class="transfer-page__brand">
+      <span class="transfer-page__logo">
+        <span class="material-symbols-outlined">account_balance</span>
+      </span>
+      <span>TrustBank</span>
+    </a>
+  </div>
+
+  <div class="transfer-card">
+    <h1 class="transfer-card__heading">Transfer Money</h1>
+    <p class="transfer-card__subtitle">Send funds to another TrustBank account.</p>
+
+    <form class="transfer-form" [formGroup]="transferForm" (ngSubmit)="onSubmit()" novalidate>
+      <div class="form-field">
+        <label for="receiverAccount">Receiver Account Number</label>
+        <input
+          id="receiverAccount"
+          type="text"
+          formControlName="receiverAccount"
+          placeholder="Enter receiver's account number"
+          [class.form-field__input--invalid]="field('receiverAccount').invalid && field('receiverAccount').touched"
+        />
+        <p class="form-field__error" *ngIf="field('receiverAccount').invalid && field('receiverAccount').touched">
+          Enter a valid account number.
+        </p>
+      </div>
+
+      <div class="form-field">
+        <label for="amount">Amount</label>
+        <input
+          id="amount"
+          type="number"
+          formControlName="amount"
+          placeholder="0.00"
+          min="1"
+          [class.form-field__input--invalid]="field('amount').invalid && field('amount').touched"
+        />
+        <p class="form-field__error" *ngIf="field('amount').invalid && field('amount').touched">
+          Enter an amount greater than zero.
+        </p>
+      </div>
+
+      <div class="form-field">
+        <label for="remarks">Remarks</label>
+        <input id="remarks" type="text" formControlName="remarks" placeholder="What's this for? (optional)" />
+      </div>
+
+      <p class="form-field__error transfer-form__server-message" *ngIf="errorMessage()">
+        {{ errorMessage() }}
+      </p>
+      <p class="transfer-form__server-message transfer-form__server-message--success" *ngIf="successMessage()">
+        {{ successMessage() }}
+      </p>
+
+      <div class="transfer-form__actions">
+        <button
+          type="submit"
+          class="btn btn-primary transfer-form__submit"
+          [disabled]="transferForm.invalid || isSubmitting()"
+        >
+          {{ isSubmitting() ? 'Transferring…' : 'Transfer' }}
+        </button>
+        <a routerLink="/customer-dashboard" class="btn btn-outline transfer-form__back">Back to Dashboard</a>
+      </div>
+    </form>
+  </div>
+</div>
