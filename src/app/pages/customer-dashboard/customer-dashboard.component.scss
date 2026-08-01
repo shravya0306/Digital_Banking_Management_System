@@ -27,3 +27,18 @@
     color: var(--color-text-muted);
   }
 }
+button {
+  margin-top: 20px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  background: #dc2626;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #b91c1c;
+}

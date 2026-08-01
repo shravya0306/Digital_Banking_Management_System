@@ -72,6 +72,7 @@ export class RegisterComponent {
     if (this.isSubmitting) {
       return;
     }
+
     this.isSubmitting = true;
 
     const v = this.registerForm.value;
@@ -91,7 +92,11 @@ export class RegisterComponent {
       .subscribe({
         next: (response) => {
           this.isSubmitting = false;
+
           if (response.success) {
+            // Clear any previous logged-in customer session
+            sessionStorage.clear();
+
             this.router.navigate(['/login']);
           } else {
             alert(response.message ?? 'Registration failed.');

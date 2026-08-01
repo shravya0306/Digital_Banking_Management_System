@@ -1,6 +1,6 @@
 import { Component, OnInit, inject, signal } from '@angular/core';
+import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -11,6 +11,7 @@ import { RouterLink } from '@angular/router';
 })
 export class CustomerDashboardComponent implements OnInit {
   private readonly authService = inject(AuthService);
+  private readonly router = inject(Router);
 
   customerName = signal<string>('');
   accountNumber = signal<string>('');
@@ -35,5 +36,10 @@ export class CustomerDashboardComponent implements OnInit {
         }
       },
     });
+  }
+
+  logout(): void {
+    sessionStorage.clear();
+    this.router.navigate(['/login']);
   }
 }

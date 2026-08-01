@@ -49,12 +49,19 @@ export class LoginComponent {
     this.authService.login({ identifier, password }).subscribe({
       next: (response) => {
         this.isSubmitting.set(false);
+
         if (response.success) {
+
+          // Clear previous session before storing the new user's details
+          sessionStorage.clear();
+
           sessionStorage.setItem('customer_id', String(response.customer_id));
           sessionStorage.setItem('full_name', response.full_name ?? '');
+
           if (response.account_number) {
             sessionStorage.setItem('account_number', response.account_number);
           }
+
           this.router.navigate(['/customer-dashboard']);
         } else {
           this.errorMessage.set(response.message ?? 'Invalid credentials.');

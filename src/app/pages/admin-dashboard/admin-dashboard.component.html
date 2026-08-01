@@ -3,21 +3,8 @@
   <div class="dashboard-card">
 
     <h1>Administrator Dashboard</h1>
+
     <p>Welcome to the TrustBank Admin Portal.</p>
-
-    <div class="stats">
-
-      <div class="stat-card">
-        <h3>Total Customers</h3>
-        <p>--</p>
-      </div>
-
-      <div class="stat-card">
-        <h3>Total Transactions</h3>
-        <p>--</p>
-      </div>
-
-    </div>
 
     <div class="actions">
 
@@ -29,7 +16,9 @@
         View Transactions
       </a>
 
-      <button class="logout-btn">
+      <button
+        class="logout-btn"
+        (click)="logout()">
         Logout
       </button>
 
