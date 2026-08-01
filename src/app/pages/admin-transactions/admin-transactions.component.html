@@ -1,0 +1,45 @@
+<div class="admin-transactions">
+
+  <h1>All Transactions</h1>
+
+  <p *ngIf="errorMessage()" class="error-message">
+    {{ errorMessage() }}
+  </p>
+
+  <table *ngIf="transactions().length > 0">
+
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Sender</th>
+        <th>Receiver</th>
+        <th>Amount</th>
+        <th>Remarks</th>
+        <th>Status</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+
+      <tr *ngFor="let transaction of transactions()">
+
+        <td>{{ transaction.transaction_id }}</td>
+        <td>{{ transaction.sender_account }}</td>
+        <td>{{ transaction.receiver_account }}</td>
+        <td>₹{{ transaction.amount }}</td>
+        <td>{{ transaction.remarks }}</td>
+        <td>{{ transaction.status }}</td>
+        <td>{{ transaction.transaction_date }}</td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+  <p *ngIf="transactions().length === 0 && !errorMessage()">
+    No transactions found.
+  </p>
+
+</div>

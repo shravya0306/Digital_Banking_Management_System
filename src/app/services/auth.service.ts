@@ -89,6 +89,48 @@ export interface TransactionsResponse {
   message?: string;
 }
 
+export interface AdminLoginPayload {
+  username: string;
+  password: string;
+}
+
+export interface AdminLoginResponse {
+  success: boolean;
+  admin_id?: number;
+  username?: string;
+  message?: string;
+}
+export interface AdminCustomer {
+  customer_id: number;
+  full_name: string;
+  email: string;
+  mobile: string;
+  account_number: string;
+  account_type: string;
+  balance: number;
+}
+
+export interface AdminCustomersResponse {
+  success: boolean;
+  customers?: AdminCustomer[];
+  message?: string;
+}
+export interface AdminTransaction {
+  transaction_id: number;
+  sender_account: string;
+  receiver_account: string;
+  amount: number;
+  remarks: string;
+  status: string;
+  transaction_date: string;
+}
+
+export interface AdminTransactionsResponse {
+  success: boolean;
+  transactions?: AdminTransaction[];
+  message?: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
@@ -117,6 +159,22 @@ export class AuthService {
   transferMoney(payload: TransferPayload): Observable<TransferResponse> {
     return this.http.post<TransferResponse>(`${this.baseUrl}/transfer`, payload);
   }
+  adminLogin(payload: AdminLoginPayload): Observable<AdminLoginResponse> {
+    return this.http.post<AdminLoginResponse>(
+      `${this.baseUrl}/admin/login`,
+      payload
+    );
+  }
+  getAllCustomers(): Observable<AdminCustomersResponse> {
+    return this.http.get<AdminCustomersResponse>(
+    ` ${this.baseUrl}/admin/customers`
+    );
+  } 
+  getAllTransactions(): Observable<AdminTransactionsResponse> {
+    return this.http.get<AdminTransactionsResponse>(
+    ` ${this.baseUrl}/admin/transactions`
+    );
+  }
 
   getTransactions(customerId: string | number): Observable<TransactionsResponse> {
     return this.http.get<TransactionsResponse>(`${this.baseUrl}/transactions`, {
@@ -124,3 +182,5 @@ export class AuthService {
     });
   }
 }
+
+

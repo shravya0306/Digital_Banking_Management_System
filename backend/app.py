@@ -344,6 +344,145 @@ def transactions():
     finally:
         conn.close()
 
+@app.post("/admin/login")
+def admin_login():
+    data = request.get_json(silent=True) or {}
+
+    username = data.get("username")
+    password = data.get("password")
+
+    if not username or not password:
+        return jsonify(
+            {
+                "success": False,
+                "message": "Username and password are required."
+            }
+        ), 400
+
+    conn = get_connection()
+
+    try:
+        admin = conn.execute(
+            """
+            SELECT * FROM Admin
+            WHERE username = ?
+            """,
+            (username,),
+        ).fetchone()
+
+        if admin is None or not check_password_hash(
+            admin["password_hash"], password
+        ):
+            return jsonify(
+                {
+                    "success": False,
+                    "message": "Invalid username or password."
+                }
+            ), 401
+
+        return jsonify(
+            {
+                "success": True,
+                "admin_id": admin["admin_id"],
+                "username": admin["username"],
+            }
+        ), 200
+
+    finally:
+        conn.close()
+
+@app.get("/admin/customers")
+def admin_customers():
+    conn = get_connection()
+
+    try:
+        rows = conn.execute(
+            """
+            SELECT
+                c.customer_id,
+                c.full_name,
+                c.email,
+                c.mobile,
+                a.account_number,
+                a.account_type,
+                a.balance
+            FROM Customer c
+            JOIN Account a
+                ON c.customer_id = a.customer_id
+            ORDER BY c.customer_id
+            """
+        ).fetchall()
+
+        customers = []
+
+        for row in rows:
+            customers.append(
+                {
+                    "customer_id": row["customer_id"],
+                    "full_name": row["full_name"],
+                    "email": row["email"],
+                    "mobile": row["mobile"],
+                    "account_number": row["account_number"],
+                    "account_type": row["account_type"],
+                    "balance": row["balance"],
+                }
+            )
+
+        return jsonify(
+            {
+                "success": True,
+                "customers": customers,
+            }
+        ), 200
+
+    finally:
+        conn.close()
+
+@app.get("/admin/transactions")
+def admin_transactions():
+    conn = get_connection()
+
+    try:
+        rows = conn.execute(
+            """
+            SELECT
+                transaction_id,
+                sender_account,
+                receiver_account,
+                amount,
+                remarks,
+                status,
+                transaction_date
+            FROM "Transaction"
+            ORDER BY transaction_date DESC
+            """
+        ).fetchall()
+
+        transactions = []
+
+        for row in rows:
+            transactions.append(
+                {
+                    "transaction_id": row["transaction_id"],
+                    "sender_account": row["sender_account"],
+                    "receiver_account": row["receiver_account"],
+                    "amount": row["amount"],
+                    "remarks": row["remarks"],
+                    "status": row["status"],
+                    "transaction_date": row["transaction_date"],
+                }
+            )
+
+        return jsonify(
+            {
+                "success": True,
+                "transactions": transactions,
+            }
+        ), 200
+
+    finally:
+        conn.close()
+
 
 if __name__ == "__main__":
     init_db()

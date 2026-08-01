@@ -5,6 +5,7 @@ Uses the standard library sqlite3 module only (no SQLAlchemy).
 
 import sqlite3
 from pathlib import Path
+from werkzeug.security import generate_password_hash
 
 DB_PATH = Path(__file__).parent / "banking.db"
 
@@ -66,6 +67,33 @@ def init_db() -> None:
             )
             """
         )
+
+        conn.execute(
+            """
+            CREATE TABLE IF NOT EXISTS Admin (
+                admin_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT UNIQUE NOT NULL,
+                password_hash TEXT NOT NULL
+                
+            )
+            """
+        )
+        admin_exists = conn.execute(
+            "SELECT 1 FROM Admin WHERE username = ?",
+            ("admin",)
+        ).fetchone()
+
+        if not admin_exists:
+            conn.execute(
+                """
+                INSERT INTO Admin (username, password_hash)
+                VALUES (?, ?)
+                """,
+                (
+                    "admin",
+                    generate_password_hash("admin123"),
+                ),
+            )
 
         conn.commit()
     finally:
