@@ -131,3 +131,8 @@
     flex: 1;
   }
 }
+.navbar__link--active {
+  color: var(--color-primary);
+  font-weight: 700;
+  border-bottom: 2px solid var(--color-primary);
+}

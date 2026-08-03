@@ -4,13 +4,13 @@
       <span class="transfer-page__logo">
         <span class="material-symbols-outlined">account_balance</span>
       </span>
-      <span>TrustBank</span>
+      <span>Velora Bank</span>
     </a>
   </div>
 
   <div class="transfer-card">
     <h1 class="transfer-card__heading">Transfer Money</h1>
-    <p class="transfer-card__subtitle">Send funds to another TrustBank account.</p>
+    <p class="transfer-card__subtitle">Send funds to another Velora Bank account.</p>
 
     <form class="transfer-form" [formGroup]="transferForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="form-field">
@@ -44,7 +44,7 @@
 
       <div class="form-field">
         <label for="remarks">Remarks</label>
-        <input id="remarks" type="text" formControlName="remarks" placeholder="What's this for? (optional)" />
+        <input id="remarks" type="text" formControlName="remarks" placeholder="(optional)" />
       </div>
 
       <p class="form-field__error transfer-form__server-message" *ngIf="errorMessage()">

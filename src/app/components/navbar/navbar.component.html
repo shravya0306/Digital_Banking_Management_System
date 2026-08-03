@@ -1,45 +1,107 @@
 <header class="navbar" [class.navbar--scrolled]="isScrolled()">
   <nav class="navbar__inner">
-    <a class="navbar__brand" routerLink="/" fragment="home" (click)="closeMenu()">
+
+    <a
+      class="navbar__brand"
+      routerLink="/"
+      fragment="home"
+      (click)="closeMenu()"
+    >
       <span class="navbar__logo">
-        <span class="material-symbols-outlined">account_balance</span>
+        <span class="material-symbols-outlined">
+          account_balance
+        </span>
       </span>
-      <span class="navbar__title">Velora Bank</span>
+
+      <span class="navbar__title">
+        Velora Bank
+      </span>
     </a>
 
     <ul class="navbar__links">
       <li *ngFor="let link of navLinks">
+
         <a
           [routerLink]="'/'"
           [fragment]="link.fragment"
-          routerLinkActive="navbar__link--active"
-          [routerLinkActiveOptions]="{ exact: true }"
           class="navbar__link"
-        >{{ link.label }}</a>
+          [class.navbar__link--active]="activeSection() === link.fragment"
+        >
+          {{ link.label }}
+        </a>
+
       </li>
     </ul>
 
     <div class="navbar__actions">
-      <a routerLink="/login" class="btn btn-outline navbar__btn">Login</a>
-      <a routerLink="/register" class="btn btn-primary navbar__btn">Register</a>
+
+      <a
+        routerLink="/login"
+        class="btn btn-outline navbar__btn"
+      >
+        Login
+      </a>
+
+      <a
+        routerLink="/register"
+        class="btn btn-primary navbar__btn"
+      >
+        Register
+      </a>
+
+      <a
+        routerLink="/admin-login"
+        class="btn btn-outline navbar__btn"
+      >
+        Admin
+      </a>
+
     </div>
 
-    <button class="navbar__toggle" (click)="toggleMenu()" aria-label="Toggle menu">
-      <span class="material-symbols-outlined">{{ isMenuOpen() ? 'close' : 'menu' }}</span>
+    <button
+      class="navbar__toggle"
+      (click)="toggleMenu()"
+      aria-label="Toggle menu"
+    >
+      <span class="material-symbols-outlined">
+        {{ isMenuOpen() ? 'close' : 'menu' }}
+      </span>
     </button>
+
   </nav>
 
   <div class="navbar__mobile" *ngIf="isMenuOpen()">
+
     <a
       *ngFor="let link of navLinks"
       [routerLink]="'/'"
       [fragment]="link.fragment"
       class="navbar__mobile-link"
+      [class.navbar__link--active]="activeSection() === link.fragment"
       (click)="closeMenu()"
-    >{{ link.label }}</a>
+    >
+      {{ link.label }}
+    </a>
+
     <div class="navbar__mobile-actions">
-      <a routerLink="/login" class="btn btn-outline" (click)="closeMenu()">Login</a>
-      <a routerLink="/register" class="btn btn-primary" (click)="closeMenu()">Register</a>
+
+      <a
+        routerLink="/login"
+        class="btn btn-outline"
+        (click)="closeMenu()"
+      >
+        Login
+      </a>
+
+      <a
+        routerLink="/register"
+        class="btn btn-primary"
+        (click)="closeMenu()"
+      >
+        Register
+      </a>
+
     </div>
+
   </div>
 </header>

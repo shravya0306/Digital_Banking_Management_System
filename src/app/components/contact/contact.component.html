@@ -43,11 +43,11 @@
       <form class="contact__form" (ngSubmit)="onSubmit()" #contactForm="ngForm">
         <div class="contact__field">
           <label for="name">Full Name</label>
-          <input id="name" name="name" type="text" placeholder="John Doe" [(ngModel)]="name" required />
+          <input id="name" name="name" type="text" placeholder="" [(ngModel)]="name" required />
         </div>
         <div class="contact__field">
           <label for="email">Email Address</label>
-          <input id="email" name="email" type="email" placeholder="john@example.com" [(ngModel)]="email" required />
+          <input id="email" name="email" type="email" placeholder="" [(ngModel)]="email" required />
         </div>
         <div class="contact__field">
           <label for="message">Message</label>

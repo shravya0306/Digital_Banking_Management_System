@@ -1,4 +1,4 @@
-"""SQLite connection + schema setup for the TrustBank backend.
+"""SQLite connection + schema setup for the Velora Bank backend.
 
 Uses the standard library sqlite3 module only (no SQLAlchemy).
 """

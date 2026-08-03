@@ -1,4 +1,4 @@
-"""TrustBank authentication backend.
+"""Velora Bank authentication backend.
 
 Endpoints:
     POST /register  - create a new customer account

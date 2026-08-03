@@ -38,8 +38,8 @@ export class ServicesComponent {
     },
     {
       icon: 'request_quote',
-      title: 'Loan Services',
-      description: 'Apply for a loan and track your application and repayment status.',
+      title: 'Account Management',
+      description: 'Manage your banking profile, account information, and account type securely from your dashboard.',
     },
   ];
 }
