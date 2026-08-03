@@ -134,7 +134,7 @@ export interface AdminTransactionsResponse {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private readonly http = inject(HttpClient);
-  private readonly baseUrl = 'http://localhost:5000';
+  private readonly baseUrl = 'https://digital-banking-management-system.onrender.com';
 
   register(payload: RegisterPayload): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${this.baseUrl}/register`, payload);

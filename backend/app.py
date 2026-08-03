@@ -17,8 +17,17 @@ from werkzeug.security import check_password_hash, generate_password_hash
 from database import get_connection, init_db
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "http://localhost:4200"}})
-
+CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "http://localhost:4200",
+                "https://sparkly-wisp-4bc6ce.netlify.app"
+            ]
+        }
+    }
+)
 DEFAULT_INITIAL_BALANCE = 10000
 DEFAULT_IFSC_CODE = "VELR0001001"
 DEFAULT_BRANCH = "Bangalore Main"
