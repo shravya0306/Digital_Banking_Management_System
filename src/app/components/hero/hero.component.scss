@@ -1,21 +1,29 @@
 .hero {
-  padding: 160px 24px 96px;
+  width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
+  padding: 160px 24px 96px;
+  overflow: hidden;
 
   @media (max-width: 768px) {
     padding: 120px 20px 64px;
   }
+
+  @media (max-width: 480px) {
+    padding: 110px 16px 50px;
+  }
 }
 
 .hero__inner {
+  width: 100%;
+  max-width: 100%;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: 64px;
   align-items: center;
-  grid-template-columns: 1fr;
 
   @media (min-width: 1024px) {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   }
 
   @media (max-width: 768px) {
@@ -23,10 +31,16 @@
   }
 }
 
+.hero__copy {
+  min-width: 0;
+  max-width: 100%;
+}
+
 .hero__badge {
   display: inline-flex;
   align-items: center;
   gap: 8px;
+  max-width: 100%;
   padding: 6px 14px;
   background: rgba(165, 102, 111, 0.12);
   color: var(--color-secondary);
@@ -37,6 +51,7 @@
 
   .material-symbols-outlined {
     font-size: 18px;
+    flex-shrink: 0;
   }
 
   @media (max-width: 480px) {
@@ -46,11 +61,13 @@
 }
 
 .hero__title {
+  max-width: 100%;
   font-size: 44px;
   line-height: 1.15;
   font-weight: 700;
   letter-spacing: -0.02em;
   margin-bottom: 24px;
+  overflow-wrap: break-word;
 
   @media (max-width: 640px) {
     font-size: 32px;
@@ -62,13 +79,15 @@
 }
 
 .hero__subtitle {
+  max-width: 480px;
   font-size: 18px;
   color: var(--color-text-muted);
-  max-width: 480px;
   line-height: 1.6;
   margin-bottom: 32px;
+  overflow-wrap: break-word;
 
   @media (max-width: 640px) {
+    max-width: 100%;
     font-size: 16px;
   }
 }
@@ -77,10 +96,12 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+  max-width: 100%;
 
   @media (max-width: 480px) {
     flex-direction: column;
     align-items: stretch;
+    width: 100%;
 
     .btn {
       width: 100%;
@@ -89,12 +110,17 @@
 }
 
 .hero__visual {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .hero__image {
+  display: block;
   width: 600px;
   max-width: 100%;
   height: auto;
@@ -103,6 +129,7 @@
 }
 
 /* Hero card styles */
+
 .hero__card {
   width: 100%;
   max-width: 400px;
@@ -182,6 +209,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 12px;
   padding: 12px;
   border: 1px solid rgba(48, 48, 48, 0.06);
   border-radius: var(--radius-sm);
@@ -191,6 +219,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  min-width: 0;
 
   .material-symbols-outlined {
     width: 36px;
@@ -201,6 +230,7 @@
     background: rgba(122, 46, 58, 0.08);
     color: var(--color-primary);
     border-radius: var(--radius-sm);
+    flex-shrink: 0;
   }
 
   p {
@@ -216,4 +246,5 @@
 
 .hero__card-activity-amount {
   font-weight: 700;
+  flex-shrink: 0;
 }
