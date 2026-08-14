@@ -2,6 +2,10 @@
   background: var(--color-primary);
   padding: 72px 24px 32px;
   color: rgba(255, 255, 255, 0.8);
+
+  @media (max-width: 480px) {
+    padding: 56px 20px 28px;
+  }
 }
 
 .footer__inner {
@@ -13,6 +17,10 @@
 
   @media (min-width: 768px) {
     grid-template-columns: 1.4fr 1fr 1fr;
+  }
+
+  @media (max-width: 480px) {
+    gap: 36px;
   }
 }
 
@@ -69,6 +77,10 @@
   color: var(--color-accent);
 }
 
+.footer__contact li {
+  overflow-wrap: anywhere;
+}
+
 .footer__bottom {
   max-width: var(--container-max);
   margin: 56px auto 0;
@@ -77,4 +89,9 @@
   text-align: center;
   font-size: 12px;
   opacity: 0.7;
+
+  @media (max-width: 480px) {
+    margin-top: 40px;
+    padding-top: 20px;
+  }
 }

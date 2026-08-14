@@ -12,14 +12,16 @@
   }
 }
 
-// Informational cards only — no hover-to-navigate treatment,
-// no pointer cursor, no directional affordances.
 .services__card {
   padding: 32px;
   background: #fff;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
   cursor: default;
+
+  @media (max-width: 480px) {
+    padding: 24px;
+  }
 }
 
 .services__icon {
@@ -42,6 +44,10 @@
   font-size: 19px;
   color: var(--color-text);
   margin-bottom: 8px;
+
+  @media (max-width: 480px) {
+    font-size: 18px;
+  }
 }
 
 .services__card p {

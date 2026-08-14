@@ -2,6 +2,10 @@
   padding: 160px 24px 96px;
   max-width: var(--container-max);
   margin: 0 auto;
+
+  @media (max-width: 768px) {
+    padding: 120px 20px 64px;
+  }
 }
 
 .hero__inner {
@@ -12,6 +16,10 @@
 
   @media (min-width: 1024px) {
     grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 768px) {
+    gap: 40px;
   }
 }
 
@@ -30,6 +38,11 @@
   .material-symbols-outlined {
     font-size: 18px;
   }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
 }
 
 .hero__title {
@@ -42,6 +55,10 @@
   @media (max-width: 640px) {
     font-size: 32px;
   }
+
+  @media (max-width: 400px) {
+    font-size: 28px;
+  }
 }
 
 .hero__subtitle {
@@ -50,19 +67,42 @@
   max-width: 480px;
   line-height: 1.6;
   margin-bottom: 32px;
+
+  @media (max-width: 640px) {
+    font-size: 16px;
+  }
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: stretch;
+
+    .btn {
+      width: 100%;
+    }
+  }
 }
 
 .hero__visual {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
+.hero__image {
+  width: 600px;
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 20px;
+}
+
+/* Hero card styles */
 .hero__card {
   width: 100%;
   max-width: 400px;
@@ -176,18 +216,4 @@
 
 .hero__card-activity-amount {
   font-weight: 700;
-}
-
-.hero__visual {
-  flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hero__image {
-  width: 600px;      /* Change this value as needed */
-  height: auto;      /* Keeps the image proportional */
-  object-fit: contain;
-  border-radius: 20px;
 }
